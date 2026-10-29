@@ -55,3 +55,4 @@ class FetchResult:
     new: int
     duplicates: int
     error: str | None = None
+    filtered: int = 0        # dropped as out-of-scope (location filter, etc.)

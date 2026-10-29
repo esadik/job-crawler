@@ -34,7 +34,9 @@ class JobBankFetcher:
 
     def fetch(self, cfg: UserConfig) -> list[JobPosting]:
         results: dict[str, JobPosting] = {}
-        where = cfg.city or "Vancouver"
+        # Query the whole province (not just the city) so we see
+        # Victoria / Burnaby / Richmond postings too.
+        where = cfg.province or cfg.city or "British Columbia"
         for title in cfg.job_titles[:10]:
             params = {
                 "searchstring": title,

@@ -21,6 +21,7 @@ class UserConfig:
     name: str
     city: str
     province: str
+    province_code: str
     country: str
     work_auth_status: str
     can_work_in_canada: bool
@@ -29,6 +30,7 @@ class UserConfig:
     soft_titles: list[str] = field(default_factory=list)
     themes: list[str] = field(default_factory=list)
     locations_allowed: list[str] = field(default_factory=list)
+    strict_location_filter: bool = True
     strong_match_threshold: int = 55
     max_age_days: int = 21
 
@@ -59,6 +61,7 @@ def load_user_config(path: Path | None = None) -> UserConfig:
         name=data.get("name", ""),
         city=loc.get("city", ""),
         province=loc.get("province", ""),
+        province_code=loc.get("province_code", ""),
         country=loc.get("country", ""),
         work_auth_status=auth.get("status", "other"),
         can_work_in_canada=bool(auth.get("can_work_in_canada", True)),
@@ -67,6 +70,7 @@ def load_user_config(path: Path | None = None) -> UserConfig:
         soft_titles=list(data.get("soft_titles") or []),
         themes=list(data.get("themes") or []),
         locations_allowed=list(data.get("locations_allowed") or []),
+        strict_location_filter=bool(loc.get("strict_location_filter", True)),
         strong_match_threshold=int(data.get("strong_match_threshold", 55)),
         max_age_days=int(data.get("max_age_days", 21)),
     )

@@ -232,6 +232,27 @@ def counts_by_status() -> dict[str, int]:
     return {r["status"]: r["n"] for r in rows}
 
 
+def purge_where(predicate_sql: str, params: tuple = ()) -> int:
+    """Delete rows matching a WHERE clause. Returns rows deleted."""
+    with connect() as conn:
+        cur = conn.execute(f"DELETE FROM jobs WHERE {predicate_sql}", params)
+        return cur.rowcount or 0
+
+
+def iter_all_jobs() -> list[StoredJob]:
+    with connect() as conn:
+        rows = conn.execute("SELECT * FROM jobs").fetchall()
+    return [_row_to_job(r) for r in rows]
+
+
+def delete_jobs(ids: list[int]) -> int:
+    if not ids:
+        return 0
+    with connect() as conn:
+        cur = conn.executemany("DELETE FROM jobs WHERE id = ?", [(i,) for i in ids])
+        return cur.rowcount or 0
+
+
 def recent_summary(hours: int = 24, strong_threshold: int = 40) -> dict[str, int]:
     cutoff = datetime.utcnow().timestamp() - hours * 3600
     with connect() as conn:

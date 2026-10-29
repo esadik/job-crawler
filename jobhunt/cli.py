@@ -14,6 +14,7 @@ from rich.table import Table
 from . import db
 from .config import load_user_config
 from .eligibility import ELIGIBILITY_LABEL
+from .location_filter import is_in_scope
 from .models import ALL_STATUSES
 from .pipeline import run_fetch
 from .tailor import tailor
@@ -63,11 +64,15 @@ def fetch(only: tuple[str, ...]) -> None:
     t.add_column("Source")
     t.add_column("New", justify="right")
     t.add_column("Duplicates", justify="right")
+    t.add_column("Out-of-scope", justify="right")
     t.add_column("Error")
     for r in summary.results:
-        t.add_row(r.source, str(r.new), str(r.duplicates), (r.error or "")[:60])
+        t.add_row(r.source, str(r.new), str(r.duplicates), str(r.filtered), (r.error or "")[:60])
     console.print(t)
-    console.print(f"[bold]Total new: {summary.total_new}[/]  (dups: {summary.total_dups})")
+    console.print(
+        f"[bold]Total new: {summary.total_new}[/]  "
+        f"(dups: {summary.total_dups}, filtered: {summary.total_filtered})"
+    )
 
 
 @cli.command("list")
@@ -164,6 +169,29 @@ def mark(job_id: int, status: str, notes: str | None) -> None:
     """Change the status of a job (new/interested/applied/interview/offer/rejected/hidden)."""
     db.set_status(job_id, status, notes=notes)
     console.print(f"[green]Job {job_id} → {status}[/]")
+
+
+@cli.command("purge-out-of-scope")
+@click.option("--dry-run", is_flag=True, help="List what would be deleted without touching the DB.")
+def purge_out_of_scope_cmd(dry_run: bool) -> None:
+    """Delete postings whose location is outside the configured region.
+
+    Useful after you tighten ``strict_location_filter`` or shrink
+    ``locations_allowed`` in config/user.yaml.
+    """
+    cfg = load_user_config()
+    victims = [j for j in db.iter_all_jobs() if not is_in_scope(j.location, cfg)]
+    console.print(f"Found [bold]{len(victims)}[/] out-of-scope postings.")
+    for j in victims[:20]:
+        console.print(f"  [{j.id:4}] {j.location!r:30}  {j.title[:60]}")
+    if len(victims) > 20:
+        console.print(f"  … and {len(victims) - 20} more")
+    if dry_run:
+        console.print("[yellow]Dry run — nothing deleted. Re-run without --dry-run to actually purge.[/]")
+        return
+    if victims:
+        db.delete_jobs([j.id for j in victims])
+        console.print(f"[green]Deleted {len(victims)} postings.[/]")
 
 
 @cli.command()

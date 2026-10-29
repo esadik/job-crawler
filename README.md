@@ -131,6 +131,42 @@ forwarding) is on the v0.2 roadmap.
 
 ---
 
+## Location scope
+
+By default jobhunt filters postings down to the configured province (BC
+out of the box). This happens in `jobhunt/location_filter.py` and is
+driven by:
+
+```yaml
+# config/user.yaml
+location:
+  province: British Columbia
+  province_code: BC
+  strict_location_filter: true
+locations_allowed:
+  - Vancouver
+  - BC
+  - British Columbia
+  - Burnaby
+  - …
+```
+
+Rules in short: an explicit same-province signal (``(BC)``, "Victoria",
+etc.) keeps the posting. An explicit other-province signal (``(ON)``,
+"Alberta", "remote in Southern Ontario") drops it, even if the posting
+also says "remote". Postings with no location text, or just "Remote
+(Canada)" / "anywhere in Canada", are kept so you can judge them.
+
+To turn the filter off globally, set
+``location.strict_location_filter: false``.
+
+If you already have an older DB with out-of-province postings in it, run:
+
+```bash
+python -m jobhunt.cli purge-out-of-scope --dry-run   # preview
+python -m jobhunt.cli purge-out-of-scope             # actually delete
+```
+
 ## Eligibility flags
 
 Every posting is tagged with one of:

@@ -39,7 +39,9 @@ class AdzunaFetcher:
 
         results: dict[str, JobPosting] = {}
         titles = cfg.job_titles[:8]        # cap: don't blow the free quota
-        where = cfg.city or "British Columbia"
+        # Query at the province level; the pipeline's location filter will
+        # drop anything that slipped in from outside BC.
+        where = cfg.province or cfg.city or "British Columbia"
 
         for title in titles:
             for page in range(1, PAGES_PER_QUERY + 1):

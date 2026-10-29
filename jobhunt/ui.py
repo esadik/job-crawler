@@ -43,10 +43,18 @@ with st.sidebar:
     if st.button("↻ Fetch now", type="primary", use_container_width=True):
         with st.spinner("Fetching jobs from all sources…"):
             summary = run_fetch(cfg)
-        st.success(f"Fetched {summary.total_new} new postings ({summary.total_dups} already in DB).")
+        st.success(
+            f"Fetched {summary.total_new} new postings "
+            f"({summary.total_dups} already in DB, "
+            f"{summary.total_filtered} dropped as out-of-scope)."
+        )
         for r in summary.results:
             icon = "✓" if not r.error else "✗"
-            st.text(f"{icon} {r.source}: +{r.new} new ({r.duplicates} dup){' — ' + r.error if r.error else ''}")
+            st.text(
+                f"{icon} {r.source}: +{r.new} new "
+                f"({r.duplicates} dup, {r.filtered} out-of-scope)"
+                f"{' — ' + r.error if r.error else ''}"
+            )
 
     st.divider()
     st.subheader("Filters")
@@ -164,9 +172,11 @@ with tab_board:
             rows = [j for j in db.list_jobs(statuses=[status], limit=100)]
             st.caption(f"{len(rows)}")
             for j in rows:
+                city = (j.location or "—").strip()
                 st.markdown(
                     f"**[{j.title}]({j.url or '#'})**  \n"
-                    f"<small>{j.org} · score {j.match_score}</small>",
+                    f"<small>{j.org}</small>  \n"
+                    f"<small>📍 {city} &middot; score {j.match_score}</small>",
                     unsafe_allow_html=True,
                 )
                 st.divider()

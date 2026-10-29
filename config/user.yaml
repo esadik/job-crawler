@@ -2,8 +2,13 @@ name: Sriya Srivastava
 
 location:
   city: Vancouver
-  province: BC
+  province: British Columbia
+  province_code: BC
   country: Canada
+  # When true, drop postings whose location is clearly outside the
+  # allowed region (see locations_allowed). Postings with no location
+  # text or marked "Remote (Canada)" / "Remote (BC)" are kept.
+  strict_location_filter: true
 
 work_authorization:
   status: PGWP          # PGWP | PR | citizen | other

@@ -24,8 +24,14 @@ def main() -> int:
     cfg = load_user_config()
     summary = run_fetch(cfg)
     for r in summary.results:
-        print(f"{r.source}: +{r.new} new, {r.duplicates} dup {'ERR: ' + r.error if r.error else ''}")
-    print(f"TOTAL new: {summary.total_new}, dup: {summary.total_dups}")
+        print(
+            f"{r.source}: +{r.new} new, {r.duplicates} dup, {r.filtered} out-of-scope"
+            f"{' ERR: ' + r.error if r.error else ''}"
+        )
+    print(
+        f"TOTAL new: {summary.total_new}, dup: {summary.total_dups}, "
+        f"filtered: {summary.total_filtered}"
+    )
     return 0
 
 
