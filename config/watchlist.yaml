@@ -1,0 +1,45 @@
+# Organizations whose careers pages we scrape directly.
+# `url` = careers page. `selectors` are optional CSS hints; if omitted we
+# fall back to extracting all <a> tags whose text matches your target
+# titles.
+
+orgs:
+  - name: MOSAIC BC
+    url: https://www.mosaicbc.org/about-us/careers/
+    tags: [migration, nonprofit, settlement]
+
+  - name: ISSofBC
+    url: https://issbc.org/careers/
+    tags: [migration, nonprofit, settlement]
+
+  - name: Metro Vancouver
+    url: https://metrovancouver.org/about-us/careers
+    tags: [government, regional]
+
+  - name: City of Vancouver
+    url: https://vancouver.ca/your-government/current-opportunities-at-the-city.aspx
+    tags: [government, municipal]
+
+  - name: UBC Careers
+    url: https://ubc.wd10.myworkdayjobs.com/ubcstaffjobs
+    tags: [research, university]
+
+  - name: Pembina Institute
+    url: https://www.pembina.org/about/employment
+    tags: [climate, policy, nonprofit]
+
+  - name: Clean Energy Canada
+    url: https://cleanenergycanada.org/about/careers/
+    tags: [climate, policy, nonprofit]
+
+  - name: Public Policy Forum
+    url: https://ppforum.ca/about/careers/
+    tags: [policy, think-tank]
+
+  - name: IRPP
+    url: https://irpp.org/about-irpp/careers/
+    tags: [policy, think-tank]
+
+  - name: Vancity
+    url: https://www.vancity.com/AboutVancity/CareersAtVancity/
+    tags: [cooperative, finance, community]

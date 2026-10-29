@@ -1,0 +1,82 @@
+\documentclass[<<font_size>>pt,letterpaper]{article}
+
+\usepackage[margin=<<margin>>in]{geometry}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{xcolor}
+
+\hypersetup{colorlinks=true, urlcolor=blue!50!black}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+
+\newcommand{\resumesection}[1]{%
+  \vspace{<<sec_above>>ex}%
+  \noindent{\large\bfseries\MakeUppercase{#1}}\par
+  \vspace{-0.6ex}\noindent\hrulefill\par
+  \vspace{<<sec_below>>ex}%
+}
+
+\newcommand{\expheader}[4]{%
+  \noindent\textbf{#1} \hfill \textit{#4}\\
+  \textit{#2} \hfill \textit{#3}\par\vspace{0.2ex}%
+}
+
+\begin{document}
+
+\begin{center}
+{\Large\bfseries <<header.name>>}\\
+<<header.location>> \ \textbar\ <<header.phone>> \ \textbar\ \href{mailto:<<header.email>>}{<<header.email>>} \ \textbar\ \href{https://<<header.linkedin>>}{<<header.linkedin>>}
+<% if headline %>\\[0.2ex]{\small\textit{<<headline>>}}<% endif %>
+\end{center}
+
+\resumesection{Highlights of Qualifications}
+\begin{itemize}[leftmargin=*, nosep, itemsep=0.2ex]
+<% for q in qualifications %>
+  \item <<q>>
+<% endfor %>
+\end{itemize}
+
+\resumesection{Education}
+<% for ed in education %>
+<<ed.text>>
+<% endfor %>
+
+<% if policy_experiences %>
+\resumesection{Relevant Policy Experience}
+<% for e in policy_experiences %>
+\expheader{<<e.title>>}{<<e.org>><% if e.sub_org_note %> <<e.sub_org_note>><% endif %>}{<<e.location>>}{<<e.dates>>}
+\begin{itemize}[leftmargin=*, nosep, itemsep=0.15ex]
+<% for b in e.bullets %>
+  \item <<b>>
+<% endfor %>
+\end{itemize}
+\vspace{0.3ex}
+<% endfor %>
+<% endif %>
+
+<% if community_experiences %>
+\resumesection{Community Engagement Experience}
+<% for e in community_experiences %>
+\expheader{<<e.title>>}{<<e.org>><% if e.sub_org_note %> <<e.sub_org_note>><% endif %>}{<<e.location>>}{<<e.dates>>}
+\begin{itemize}[leftmargin=*, nosep, itemsep=0.15ex]
+<% for b in e.bullets %>
+  \item <<b>>
+<% endfor %>
+\end{itemize}
+\vspace{0.3ex}
+<% endfor %>
+<% endif %>
+
+<% if certifications %>
+\resumesection{Relevant Certifications}
+\begin{itemize}[leftmargin=*, nosep, itemsep=0.2ex]
+<% for c in certifications %>
+  \item <<c>>
+<% endfor %>
+\end{itemize}
+<% endif %>
+
+\end{document}

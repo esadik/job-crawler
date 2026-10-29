@@ -1,0 +1,187 @@
+# Master resume data. Every experience block has `tags`, `priority`, and
+# `sectors` so the tailor picks the right subset per job description.
+#
+# Priority: high | med | low — ties broken by relevance score vs the JD.
+# Sectors:  government | nonprofit | private | all
+
+header:
+  name: Sriya Srivastava
+  location: Vancouver, BC, Canada
+  phone: "+1 236-863-4448"
+  email: sriya.srivastava@outlook.com
+  linkedin: linkedin.com/in/sriya-srivastava/
+
+# Short headline that goes under the name on the resume (optional).
+# One per sector so we can pick a tone-appropriate one at tailor time.
+headlines:
+  government: "Policy \\& regulatory research --- BC Ministry of Agriculture, BCFSA, UBC"
+  nonprofit:  "Policy research \\& community engagement --- migration, climate, housing"
+  private:    "Policy research \\& analysis --- regulatory, climate, housing, migration"
+
+qualifications:
+  - tags: [all]
+    text: "Project Coordination \\& Administration: Project Planning, Deliverable Tracking, Timeline Management, Administrative Support, Process Improvement"
+  - tags: [community, engagement, nonprofit]
+    text: "Stakeholder \\& Community Engagement: Stakeholder Outreach, Community-Based Research, Partnership Development, Workshop Facilitation, Event Coordination"
+  - tags: [research, data, analyst]
+    text: "Data Management \\& Reporting: Data Collection and Management, Quality Assurance, Progress Reports, Documentation"
+  - tags: [policy, regulatory, government, analyst]
+    text: "Policy, Procedures \\& Technical Support: Policy and Regulatory Research, Jurisdictional Scans, Evaluation Frameworks"
+  - tags: [communications, policy, government]
+    text: "Communications \\& Knowledge Mobilization: Briefing Notes, Reports, Newsletters, Presentations, Stakeholder Outreach"
+  - tags: [all]
+    text: "Tools: Microsoft Excel, Word, PowerPoint, Canva, Wix, Introductory Python"
+  - tags: [all]
+    text: "Languages: English and Hindi (Native); French and Spanish (Intermediate)"
+
+education:
+  - key: ubc-ir
+    priority: high
+    sectors: [all]
+    tags: [education]
+    text: |
+      \textbf{Bachelor of Arts in International Relations}, Minor in Economics \hfill \textit{Graduated May 2026 with Distinction}\\
+      University of British Columbia, Vancouver, BC
+      \begin{itemize}[leftmargin=*, nosep]
+      \item Relevant Coursework: Politics of Development; Human Rights and Public Policy; Canadian and Asian Politics
+      \end{itemize}
+
+experiences:
+
+  - key: ubc-migration
+    priority: high
+    sectors: [all]
+    tags: [policy, migration, research, immigration, community, government, nonprofit]
+    title: Policy Research Assistant
+    org: UBC Centre for Migration Studies
+    location: Vancouver, BC
+    dates: May 2026 -- August 2026
+    section: policy
+    bullets:
+      - "Conducted legislative analysis, jurisdictional scans, and literature reviews of Canadian immigration and integration policies, examining implications for equitable access to public services."
+      - "Developed and edited four public-facing policy briefs and contributed to a visual arts-based knowledge mobilization project, preparing materials for diverse audiences."
+      - "Coordinated research communications and outreach with government representatives, academics, media contacts, and community organizations to support research dissemination and partnerships."
+
+  - key: bcfsa
+    priority: high
+    sectors: [government, private, all]
+    tags: [policy, regulatory, real-estate, housing, government, analyst]
+    title: Real Estate Policy Analyst
+    org: BC Financial Services Authority
+    location: Vancouver, BC
+    dates: September 2025 -- December 2025
+    section: policy
+    bullets:
+      - "Developed standardized policy assessment frameworks to analyze regulatory requirements, identify emerging risks and policy gaps, and support evidence-informed recommendations."
+      - "Synthesized complex findings into briefing notes and presentations containing actionable evidence-based policy and regulatory recommendations that informed executive decision making."
+      - "Coordinated research deliverables across competing priorities, incorporating feedback from colleagues and maintaining project timelines."
+
+  - key: iar-global-order
+    priority: med
+    sectors: [all]
+    tags: [research, international, policy, trade, economic, analyst]
+    title: Research Assistant on Global Order Transition
+    org: Institute of Asian Research, UBC School of Public Policy and Global Affairs
+    location: Vancouver, BC
+    dates: May 2025 -- August 2025
+    section: policy
+    sub_org_note: "(Work Learn International Undergraduate Award)"
+    bullets:
+      - "Conducted academic policy research on Global South middle powers using interviews and multilingual literature reviews."
+      - "Analyzed and cleaned geopolitical and economic data to support policy framework and memo development."
+      - "Maintained research quality through structured data collection, source verification, editing, and fact-checking."
+      - "Coordinated project deliverables with faculty and peers across multiple timelines and outputs."
+
+  - key: bc-agri-climate
+    priority: high
+    sectors: [all]
+    tags: [policy, climate, agriculture, government, analyst, sustainability]
+    title: Climate Strategies Policy Analyst
+    org: BC Ministry of Agriculture and Food
+    location: Victoria, BC
+    dates: September 2024 -- April 2025
+    section: policy
+    bullets:
+      - "Independently planned and led a portfolio of qualitative policy research and analysis on community climate resilience through jurisdictional scans, business case research and literature reviews."
+      - "Evaluated policy and program options through evidence synthesis, stakeholder input, and implementation analysis to identify opportunities for continuous program improvement and inform strategic planning."
+      - "Prepared executive briefing notes, policy reports, presentations, and research products translating complex findings into clear, actionable information for government decision-makers."
+      - "Designed and facilitated stakeholder workshops to gather input, validate findings and align research and program priorities across internal teams."
+
+  - key: vlip
+    priority: high
+    sectors: [nonprofit, all]
+    tags: [community, engagement, migration, newcomer, immigration]
+    title: Community Connector Volunteer
+    org: Vancouver Local Immigration Partnership (VLIP)
+    location: Vancouver, BC
+    dates: October 2026 -- Present
+    section: community
+    bullets:
+      - "Conducted community outreach and engagement activities to build 10+ unique relationships with newcomers, understand their experiences, identify emerging needs, and strengthen connections with local community networks."
+      - "Facilitated community conversations with 15+ members and gathered diverse perspectives that contribute to community-responsive initiatives, knowledge sharing, and collaborative decision-making."
+      - "Supported the planning and coordination of community engagement events with 20+ attendees."
+
+  - key: orice-dunster
+    priority: med
+    sectors: [nonprofit, government, all]
+    tags: [community, engagement, agriculture, indigenous, policy, land-use]
+    title: Community Engagement Research Project with Dunster, BC
+    org: Office of Regional and International Community Engagement (ORICE), UBC
+    location: Vancouver, BC
+    dates: January 2026 -- April 2026
+    section: community
+    bullets:
+      - "Collaborated with the Dunster community and supported engagement and coalition building efforts."
+      - "Created toolkits and translated research into plain language advocacy tools to support community capacity building."
+      - "Conducted policy research across jurisdictions to identify practical policy implementation pathways."
+      - "Researched First Nations perspectives and considerations related to agricultural land governance to support a more inclusive understanding of land-use policy issues."
+
+  - key: covenant-house
+    priority: med
+    sectors: [nonprofit]
+    tags: [community, engagement, program, coordination, grant-writing, youth]
+    title: Sexual Health Education Workshop for Homeless Youth
+    org: Covenant House Vancouver
+    location: Vancouver, BC
+    dates: January 2024 -- June 2024
+    section: community
+    bullets:
+      - "Took initiative and led a team of 6 to design a pilot collaborative community-focused project providing sexual health education workshops and resources to homeless youth in Vancouver."
+      - "Researched to prepare a detailed budget, action plan, and grant proposal."
+      - "Secured a funding grant of \\$1,600 from UBC's Centre for Community Engaged Learning (C2C Grant)."
+
+  - key: obvc
+    priority: med
+    sectors: [all]
+    tags: [policy, gender, human-rights, equity, GBA+, analyst]
+    title: Policy Analysis Community Project
+    org: Operation Black Vote Canada (OBVC)
+    location: Remote
+    dates: February 2024 -- April 2024
+    section: community
+    bullets:
+      - "Conducted in-depth policy analysis evaluating the implications of municipal term limits on diverse representation and human rights protection."
+      - "Executed comprehensive literature reviews, policy analyses, and data assessments, utilizing survey data, interviews, and census data."
+      - "Compiled research findings into a detailed report, synthesizing relevant information for concise briefing notes and presentations."
+
+  - key: hrc-afghan
+    priority: low
+    sectors: [nonprofit, all]
+    tags: [event-coordination, community, engagement, migration, human-rights]
+    title: Volunteer Organizer for Human Rights Commission Conference for Afghan Scholars
+    org: UBC Human Rights Commission \& ORICE
+    location: Vancouver, BC
+    dates: May 2024
+    section: community
+    bullets:
+      - "Coordinated event setup and cleanup, including catering stations and maintaining cleanliness."
+      - "Facilitated a conference of 30+ scholars by providing excellent guest service and administrative support."
+      - "Managed external stakeholders including catering services, event organizers, and building officials."
+
+certifications:
+  - tags: [data, analyst, research]
+    text: "Data Analytics Professional Certificate --- Google \\hfill \\textit{May 2026 -- Present}"
+  - tags: [gender, equity, policy, GBA+, government]
+    text: "Gender Based Analysis Plus (GBA+) Certification --- Government of Canada \\hfill \\textit{December 2023}"
+  - tags: [data, analyst, all]
+    text: "Microsoft Excel Certification --- Udemy \\hfill \\textit{March 2024}"
