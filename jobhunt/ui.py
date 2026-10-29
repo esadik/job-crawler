@@ -1,19 +1,29 @@
-"""Streamlit dashboard. Run with:  streamlit run jobhunt/ui.py"""
+"""Streamlit dashboard. Run with:  streamlit run jobhunt/ui.py
+
+Streamlit executes this file as a standalone script, not as a submodule of
+the ``jobhunt`` package, so we add the repo root to ``sys.path`` and use
+absolute imports.
+"""
 
 from __future__ import annotations
 
+import sys
 from datetime import datetime
 from pathlib import Path
+
+_REPO_ROOT = Path(__file__).resolve().parent.parent
+if str(_REPO_ROOT) not in sys.path:
+    sys.path.insert(0, str(_REPO_ROOT))
 
 import streamlit as st
 from dotenv import load_dotenv
 
-from . import db
-from .config import load_user_config
-from .eligibility import ELIGIBILITY_LABEL
-from .models import ALL_STATUSES, STATUS_NEW
-from .pipeline import run_fetch
-from .tailor import tailor
+from jobhunt import db
+from jobhunt.config import load_user_config
+from jobhunt.eligibility import ELIGIBILITY_LABEL
+from jobhunt.models import ALL_STATUSES, STATUS_NEW
+from jobhunt.pipeline import run_fetch
+from jobhunt.tailor import tailor
 
 
 load_dotenv()
